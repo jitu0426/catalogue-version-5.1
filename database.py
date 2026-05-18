@@ -252,3 +252,12 @@ def delete_template(name):
             st.toast(f"Template '{name}' deleted!", icon="🗑️")
         except Exception as e:
             logger.error(f"Failed to delete template: {e}")
+
+# =========================================================================
+# Migration (kept for backwards compatibility)
+# =========================================================================
+
+def migrate_old_custom_items():
+    """Legacy migration function - kept for compatibility."""
+    logger.info("Migration skipped - using Supabase now")
+    return False
