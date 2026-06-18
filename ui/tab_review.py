@@ -5,7 +5,7 @@ Inline editing, change detection, per-row removal, and cart clear.
 import pandas as pd
 import streamlit as st
 
-from database2 import load_products_db, save_product_override, save_cart_to_db
+from database import load_products_db, save_product_override, save_cart_to_db
 from cart import remove_from_cart, clear_cart
 from ui.components import section_header, stats_bar, confirm_action, empty_state, gold_divider
 

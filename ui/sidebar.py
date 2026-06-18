@@ -5,7 +5,7 @@ Renders: logo, template save/load/delete, data sync, database info.
 import time
 import streamlit as st
 
-from database2 import (
+from database import (
     load_saved_templates, save_template_to_disk, delete_template,
     load_products_db,
 )
