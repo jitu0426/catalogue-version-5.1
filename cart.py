@@ -8,7 +8,7 @@ import pandas as pd
 import streamlit as st
 
 from config import CART_COLUMNS, NO_SELECTION_PLACEHOLDER
-from database import save_cart_to_db
+from database2 import save_cart_to_db
 
 logger = logging.getLogger(__name__)
 

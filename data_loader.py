@@ -15,7 +15,7 @@ from config import (
 from imagekit_client import (
     get_image_as_base64_str, fetch_all_imagekit_resources,
 )
-from database import load_products_db
+from database2 import load_products_db
 
 logger = logging.getLogger(__name__)
 

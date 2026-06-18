@@ -43,7 +43,7 @@ st.set_page_config(
 # ── Remaining imports ─────────────────────────────────────────────────────
 from styles import APP_CSS
 from imagekit_client import init_imagekit
-from database import load_cart_from_db, migrate_old_custom_items
+from database2 import load_cart_from_db, migrate_old_custom_items
 from data_loader import load_data_cached
 
 # ── Inject CSS ────────────────────────────────────────────────────────────

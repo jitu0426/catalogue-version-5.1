@@ -18,7 +18,7 @@ import pandas as pd
 import streamlit as st
 
 from config import NO_SELECTION_PLACEHOLDER
-from database import load_products_db
+from database2 import load_products_db
 from data_loader import create_safe_id
 from cart import add_to_cart, add_selected_visible_to_cart, clear_filters_dropdown
 from ui.components import product_thumbnail_html, stats_bar, empty_state
