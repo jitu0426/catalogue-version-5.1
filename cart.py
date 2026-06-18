@@ -78,7 +78,7 @@ def add_selected_visible_to_cart(df_visible):
 
     for key, is_checked in st.session_state.items():
         if key.startswith("checkbox_") and is_checked:
-            pid = key.replace("checkbox_", "")
+            pid = key[len("checkbox_"):].rsplit("_", 1)[0]
             if pid not in visible_pids:
                 continue
             if pid in current_cart_pids:
