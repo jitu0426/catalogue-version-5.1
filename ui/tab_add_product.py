@@ -7,7 +7,7 @@ import time
 import streamlit as st
 
 from config import CATALOGUE_PATHS
-from database import (
+from database2 import (
     load_products_db, add_custom_item, delete_custom_item,
     get_custom_products_from_db, remove_product_override, unmark_product_deleted,
 )
