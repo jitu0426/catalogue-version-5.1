@@ -92,13 +92,24 @@ from ui.sidebar import render_sidebar
 render_sidebar()
 
 # ── Main title banner ─────────────────────────────────────────────────────
+_SMOKE = '<div class="aga-smoke"><div class="smoke-p"></div><div class="smoke-p"></div><div class="smoke-p"></div><div class="smoke-p"></div><div class="smoke-p"></div></div>'
+_STICK = '<div class="aga-ember"></div><div class="aga-stick"></div><div class="aga-base"></div>'
+_AGA   = f'<div class="agarbatti">{_SMOKE}{_STICK}</div>'
+
 st.markdown(
-    """
-    <div class="main-title">
-        <span class="title-brand">HEM Product Catalogue</span>
-        <span class="title-sub">Premium Incense &amp; Fragrance Collection — Export Edition</span>
-    </div>
-    """,
+    f'<div class="main-title">'
+    f'<div class="main-title-orb-1"></div>'
+    f'<div class="main-title-orb-2"></div>'
+    f'<div class="main-title-orb-3"></div>'
+    f'<div class="main-title-shimmer2"></div>'
+    f'<div class="main-title-scan"></div>'
+    f'<div class="agarbatti-group left">{_AGA}{_AGA}</div>'
+    f'<div class="agarbatti-group right">{_AGA}{_AGA}</div>'
+    f'<span class="ornament-left">&#10022;</span>'
+    f'<span class="ornament-right">&#10022;</span>'
+    f'<span class="title-brand">HEM Product Catalogue</span>'
+    f'<span class="title-sub">Premium Incense &amp; Fragrance Collection &#8212; Export Edition</span>'
+    f'</div>',
     unsafe_allow_html=True,
 )
 
