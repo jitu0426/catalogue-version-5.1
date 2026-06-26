@@ -63,6 +63,7 @@ def render_export_tab(products_df: pd.DataFrame) -> None:
             (c for c in full_case_df.columns if "cbm" in c.lower()), "CBM"
         )
         qty_col = next((c for c in full_case_df.columns if "qty" in c.lower() or "case size" in c.lower()), None)
+        full_case_df["Category"] = full_case_df["Category"].str.lstrip("'").str.strip()
 
         cols_per_row = 2
         cat_chunks   = [
