@@ -52,7 +52,7 @@ def render_export_tab(products_df: pd.DataFrame) -> None:
         try:
             full_case_df = pd.read_excel(CASE_SIZE_PATH, dtype=str, header=1)
             full_case_df.columns = [c.strip() for c in full_case_df.columns]
-            full_case_df["Category"] = full_case_df["Category"].str.replace(u" ", " ", regex=False).str.strip()
+            full_case_df["Category"] = full_case_df["Category"].str.replace(" ", " ", regex=False).str.strip()
         except Exception as e:
             st.error(f"Could not load Case Size data: {e}")
 
