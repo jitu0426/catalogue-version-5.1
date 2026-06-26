@@ -61,9 +61,7 @@ def render_export_tab(products_df: pd.DataFrame) -> None:
         cbm_col = next(
             (c for c in full_case_df.columns if "cbm" in c.lower()), "CBM"
         )
-        desc_col = next(
-            (c for c in full_case_df.columns if "description" in c.lower()), None
-        )
+        qty_col = next((c for c in full_case_df.columns if "qty" in c.lower() or "case size" in c.lower()), None)
 
         cols_per_row = 2
         cat_chunks   = [
@@ -78,10 +76,10 @@ def render_export_tab(products_df: pd.DataFrame) -> None:
                         full_case_df["Category"] == cat
                     ].copy()
                     if not options.empty:
-                        if desc_col:
+                        if qty_col:
                             options["_label"] = options.apply(
                                 lambda x: (
-                                    f"{str(x.get(desc_col, '') or '').strip()} "
+                                    f"{str(x.get(qty_col, '') or '').strip()} "
                                     f"(CBM: {str(x.get(cbm_col, '') or '').strip()})"
                                 ),
                                 axis=1,
