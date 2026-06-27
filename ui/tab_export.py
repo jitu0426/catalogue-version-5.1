@@ -74,10 +74,34 @@ def render_export_tab(products_df: pd.DataFrame) -> None:
             cols = st.columns(len(chunk))
             for col, cat in zip(cols, chunk):
                 with col:
-                    cat_key = cat.upper().strip()
-                    options = full_case_df[
-                        full_case_df["Category"].str.upper().str.strip() == cat_key
-                    ].copy()
+                    def _nc(s):
+                        if not isinstance(s, str):
+                            return ""
+                        return s.encode("ascii", errors="ignore").decode().upper().strip()
+
+                    cat_key = _nc(cat)
+                    cat_file = full_case_df["Category"].apply(_nc)
+
+                    # Tier 1: exact match (after stripping special chars like ◆)
+                    options = full_case_df[cat_file == cat_key].copy()
+
+                    # Tier 2: substring or no-space match
+                    if options.empty:
+                        cat_ns = cat_key.replace(" ", "")
+                        mask = cat_file.apply(
+                            lambda x: cat_key in x or x in cat_key or x.replace(" ", "") == cat_ns
+                        )
+                        options = full_case_df[mask].copy()
+
+                    # Tier 3: all words of shorter name appear in longer name (needs ≥2 words)
+                    if options.empty:
+                        cat_words = set(cat_key.split())
+                        if len(cat_words) >= 2:
+                            mask = cat_file.apply(
+                                lambda x: cat_words.issubset(set(x.split()))
+                            )
+                            options = full_case_df[mask].copy()
+
                     if not options.empty:
                         if qty_col:
                             options["_label"] = options.apply(
