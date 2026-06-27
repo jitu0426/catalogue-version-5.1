@@ -85,11 +85,11 @@ def render_export_tab(products_df: pd.DataFrame) -> None:
                     # Tier 1: exact match (after stripping special chars like ◆)
                     options = full_case_df[cat_file == cat_key].copy()
 
-                    # Tier 2: substring or no-space match
+                    # Tier 2: substring or no-space match (skip empty/NaN categories)
                     if options.empty:
                         cat_ns = cat_key.replace(" ", "")
                         mask = cat_file.apply(
-                            lambda x: cat_key in x or x in cat_key or x.replace(" ", "") == cat_ns
+                            lambda x: bool(x) and (cat_key in x or x in cat_key or x.replace(" ", "") == cat_ns)
                         )
                         options = full_case_df[mask].copy()
 
@@ -98,7 +98,7 @@ def render_export_tab(products_df: pd.DataFrame) -> None:
                         cat_words = set(cat_key.split())
                         if len(cat_words) >= 2:
                             mask = cat_file.apply(
-                                lambda x: cat_words.issubset(set(x.split()))
+                                lambda x: bool(x) and cat_words.issubset(set(x.split()))
                             )
                             options = full_case_df[mask].copy()
 
